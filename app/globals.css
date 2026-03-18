@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --navy: #1E2044;
+  --navy-mid: #3A3C73;
+  --navy-light: #444466;
+  --gold: #D4A843;
+  --gold-light: #E8C978;
+  --ice: #CADCFC;
+  --muted: #9495A5;
+
+  --background: 0 0% 97%;
+  --foreground: 233 38% 19%;
+  --card: 0 0% 100%;
+  --card-foreground: 233 38% 19%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 233 38% 19%;
+  --primary: 39 60% 55%;
+  --primary-foreground: 233 38% 19%;
+  --secondary: 233 38% 19%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 240 5% 62%;
+  --muted-foreground: 240 5% 62%;
+  --accent: 233 20% 95%;
+  --accent-foreground: 233 38% 19%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 233 10% 85%;
+  --input: 233 10% 85%;
+  --ring: 39 60% 55%;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius: 0.5rem;
+
+  --color-navy: #1E2044;
+  --color-navy-mid: #3A3C73;
+  --color-navy-light: #444466;
+  --color-gold: #D4A843;
+  --color-gold-light: #E8C978;
+  --color-ice: #CADCFC;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', Calibri, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease both;
+}
+.animate-fade-up-delay-1 {
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+.animate-fade-up-delay-2 {
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+.animate-fade-up-delay-3 {
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+.animate-fade-in {
+  animation: fadeIn 0.8s ease both;
+}
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s ease both;
+}
+
+@keyframes megaOpen {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-mega-open {
+  animation: megaOpen 0.2s ease both;
+}
+
+/* Mega menu item staggered fade-up */
+@keyframes megaItemUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mega-item-animate {
+  opacity: 0;
+  animation: megaItemUp 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+.mega-item-animate:nth-child(1) { animation-delay: 200ms; }
+.mega-item-animate:nth-child(2) { animation-delay: 320ms; }
+.mega-item-animate:nth-child(3) { animation-delay: 440ms; }
+.mega-item-animate:nth-child(4) { animation-delay: 560ms; }
+.mega-item-animate:nth-child(5) { animation-delay: 680ms; }
+.mega-item-animate:nth-child(6) { animation-delay: 800ms; }
+
+/* Mega header fade-in */
+@keyframes megaHeaderIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mega-header-animate {
+  opacity: 0;
+  animation: megaHeaderIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 100ms forwards;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - 2.5rem)); }
+}
+.animate-marquee {
+  animation: marquee linear infinite;
+}
+
+/* Gradient text utility */
+.gold-gradient-text {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
