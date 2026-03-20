@@ -54,7 +54,7 @@ export default function MboPage() {
             {/* Content */}
             <div>
               <span className="font-mono text-[0.65rem] tracking-[0.16em] uppercase text-gold/70 mb-3 block">
-                Product 01 — MBO
+                Product — MBO
               </span>
               <h1
                 className="font-display font-black text-white"

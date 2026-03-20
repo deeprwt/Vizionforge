@@ -43,9 +43,10 @@ const navItems: NavItem[] = [
     tagline: "Products Built for Enterprise",
     explore: "/products",
     children: [
-      { href: "/products/mbo", label: "MBO — Dealer DMS", description: "End-to-End Dealership Management." },
       { href: "/products/expense-genie", label: "ExpenseGenie", description: "AI-Powered Expense Management." },
-      { href: "/products/loan-covenant", label: "Loan Covenant Mgmt", description: "Automate Covenant Tracking & Compliance." },
+      { href: "/products/safeops360", label: "SafeOps360", description: "Enterprise QHSE & Safety Intelligence." },
+      { href: "/products/sentio", label: "SENTIO", description: "The Living Bowtie Platform." },
+      { href: "/products/los-lms", label: "LOS / LMS", description: "Integrated Loan Origination & Management." },
     ],
   },
   {

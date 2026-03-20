@@ -7,30 +7,43 @@ import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/com
 const products = [
   {
     num: "01",
-    name: "MBO",
-    title: "Dealer Management Software",
-    description:
-      "End-to-end dealership operations — inventory, sales, service and finance in one unified SaaS platform. OEM agnostic.",
-    metrics: ["360° Dealer View", "8+ Core Modules", "SaaS Cloud-Native"],
-    href: "/products/mbo",
-  },
-  {
-    num: "02",
     name: "ExpenseGenie",
     title: "AI-Powered Expense Management",
     description:
-      "Snap a receipt. Let AI do the rest. From submission to SAP posting in seconds. 90% faster processing. 4-week go-live.",
+      "Conversational AI that reads, categorizes, validates and submits expenses. From receipt photo to SAP posting in 30 seconds. Zero forms. Zero training. 4-week go-live.",
     metrics: ["90% Faster Processing", "75% Fewer Errors", "4 Wk Go-Live"],
+    platform: "Azure AI · Azure OpenAI · Azure AD",
     href: "/products/expense-genie",
   },
   {
-    num: "03",
-    name: "Loan Covenant",
-    title: "Covenant Compliance for Lending Companies",
+    num: "02",
+    name: "SafeOps360",
+    title: "Enterprise QHSE Platform",
     description:
-      "Automate financial covenant tracking, breach detection and regulatory reporting for lending companies. Zero missed breaches.",
-    metrics: ["Zero Missed Breaches", "80% Less Manual Work", "Full Audit Trail"],
-    href: "/products/loan-covenant",
+      "Quality Audit, EHS (ISO 45001), MIS Dashboard, and AI-Powered Safety Intelligence. Deployed across 25+ construction and infrastructure projects at Tata Realty.",
+    metrics: ["397+ Audits", "25+ Projects", "5.1M Safe Man-Hours"],
+    platform: "React PWA · OutSystems ODC · Azure ML",
+    href: "/products/safeops360",
+  },
+  {
+    num: "03",
+    name: "SENTIO",
+    title: "The Living Bowtie Platform",
+    description:
+      "Turns static Bowtie risk frameworks into continuously watched, human-gated operating instruments. Three layers — Author, Watch, Review. Three deployment models.",
+    metrics: ["<60m Signal→Alert", "3 Human Gates", "6-Stage Workflow"],
+    platform: "ServiceNow · React · Node.js · Docker/K8s",
+    href: "/products/sentio",
+  },
+  {
+    num: "04",
+    name: "LOS / LMS",
+    title: "Integrated Loan Origination & Management",
+    description:
+      "End-to-end digital lending platform for capital finance. CKYC onboarding, parallel review, sanctions, securities and covenant monitoring. India-ready architecture.",
+    metrics: ["70% Reduction TAT", "90% Paperless", "100% Audit Trail"],
+    platform: "OutSystems ODC · REST/SOAP · Azure Cloud",
+    href: "/products/los-lms",
   },
 ]
 
@@ -49,7 +62,7 @@ export default function ProductsPage() {
       />
 
       <SectionWrapper>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {products.map((product) => (
             <Card key={product.num} className="p-6 group flex flex-col">
               <CardHeader className="p-0 pb-4">
@@ -57,6 +70,9 @@ export default function ProductsPage() {
                   Product {product.num} — {product.name}
                 </span>
                 <CardTitle className="text-lg">{product.title}</CardTitle>
+                <span className="text-[0.7rem] font-medium text-navy/40 mt-0.5 block">
+                  {product.platform}
+                </span>
               </CardHeader>
               <CardContent className="p-0 flex-1 flex flex-col">
                 <CardDescription className="mb-4">

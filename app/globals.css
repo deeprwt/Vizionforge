@@ -155,7 +155,7 @@ body {
 
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(calc(-100% - 2.5rem)); }
+  to { transform: translateX(calc(-100% - var(--marquee-gap, 2.5rem))); }
 }
 .animate-marquee {
   animation: marquee linear infinite;

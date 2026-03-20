@@ -10,9 +10,10 @@ const services = [
 ];
 
 const products = [
-  { label: "MBO — Dealer DMS", href: "/products/mbo" },
   { label: "ExpenseGenie", href: "/products/expense-genie" },
-  { label: "Loan Covenant Mgmt", href: "/products/loan-covenant" },
+  { label: "SafeOps360", href: "/products/safeops360" },
+  { label: "SENTIO", href: "/products/sentio" },
+  { label: "LOS / LMS", href: "/products/los-lms" },
 ];
 
 const company = [

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -16,8 +17,14 @@ const stats = [
 ]
 
 const clients = [
-  "Tata Realty", "Reliance", "PFC", "Suzlon",
-  "New India Assurance", "Tamkeen · Bahrain", "HDFC ERGO", "Tech Mahindra",
+  { name: "Tata Realty", logo: "/assets/images/trusted/tata realty.png" },
+  { name: "Reliance", logo: "/assets/images/trusted/reliance.png" },
+  { name: "PFC", logo: "/assets/images/trusted/pfc.png" },
+  { name: "Suzlon", logo: "/assets/images/trusted/suzlon.png" },
+  { name: "New India Assurance", logo: "/assets/images/trusted/New India Assurance.png" },
+  { name: "Tamkeen", logo: "/assets/images/trusted/tamkeen.png" },
+  { name: "HDFC ERGO", logo: "/assets/images/trusted/hdfc ergo.png" },
+  { name: "Tech Mahindra", logo: "/assets/images/trusted/tech mahinda.png" },
 ]
 
 const pills = ["OutSystems", "Microsoft 365", "ServiceNow", "Power Platform", "Agentic AI"]
@@ -80,14 +87,16 @@ export default function HomePage() {
             <span className="font-mono text-[0.68rem] tracking-[0.18em] uppercase text-white/40 whitespace-nowrap shrink-0">
               Trusted by
             </span>
-            <Marquee speed={25} className="flex-1">
+            <Marquee speed={30} className="flex-1">
               {clients.map((client) => (
-                <span
-                  key={client}
-                  className="text-[0.8rem] font-semibold text-white/40 tracking-wider uppercase whitespace-nowrap hover:text-gold/60 transition-colors"
-                >
-                  {client}
-                </span>
+                <Image
+                  key={client.name}
+                  src={client.logo}
+                  alt={client.name}
+                  width={200}
+                  height={60}
+                  className="h-14 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                />
               ))}
             </Marquee>
           </div>
@@ -164,7 +173,8 @@ export default function HomePage() {
             <Card key={item.title} className="border-l-navy p-6 group">
               <CardHeader className="p-0 pb-3">
                 <span className="font-mono text-[0.65rem] tracking-[0.16em] uppercase text-gold/70">
-                  Product {item.num} — {item.label}
+                  Product — {item.label}
+                  {/* {item.num}  */}
                 </span>
                 <CardTitle>{item.title}</CardTitle>
               </CardHeader>

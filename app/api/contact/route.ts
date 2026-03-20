@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
 
     await transporter.sendMail({
       from: process.env.EMAIL_FROM || "noreply@vizionforge.com",
-      to: process.env.SMTP_USER,
+      to: "harpreet@vizionforge.com",
       replyTo: email,
       subject: `New Enquiry from ${name} — ${company}`,
       html: htmlBody,
