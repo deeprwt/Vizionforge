@@ -27,10 +27,10 @@ jobs:
 
       - name: Prepare deployment files
         run: |
-          mkdir -p deploy
-          cp -r .next/standalone/* deploy/
-          mkdir -p deploy/.next
-          cp -r .next/static deploy/.next/static
+          mkdir -p deploy/.next/standalone
+          cp -r .next/standalone/* deploy/.next/standalone/
+          mkdir -p deploy/.next/static
+          cp -r .next/static/* deploy/.next/static/
           cp -r public deploy/public
 
       - name: Deploy to cPanel via FTP
