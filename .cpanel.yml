@@ -1,0 +1,9 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/vizionforge1/vizionforge
+    - /bin/cp -R . $DEPLOYPATH
+    - cd $DEPLOYPATH
+    - source /home/vizionforge1/nodevenv/vizionforge/24/bin/activate
+    - npm install --production
+    - npm run build
