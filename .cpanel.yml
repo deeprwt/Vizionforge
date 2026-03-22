@@ -2,4 +2,3 @@
 deployment:
   tasks:
     - /bin/cp -R . /home/vizionforge1/vizionforge
-    - cd /home/vizionforge1/vizionforge && source /home/vizionforge1/nodevenv/vizionforge/24/bin/activate && npm run build

@@ -1,0 +1,19 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/api/contact/route": "/api/contact",
+  "/case-studies/page": "/case-studies",
+  "/contact/page": "/contact",
+  "/engagement/page": "/engagement",
+  "/page": "/",
+  "/products/expense-genie/page": "/products/expense-genie",
+  "/products/loan-covenant/page": "/products/loan-covenant",
+  "/products/los-lms/page": "/products/los-lms",
+  "/products/mbo/page": "/products/mbo",
+  "/products/page": "/products",
+  "/products/safeops360/page": "/products/safeops360",
+  "/products/sentio/page": "/products/sentio",
+  "/services/page": "/services",
+  "/why-us/page": "/why-us"
+}
