@@ -49,3 +49,18 @@ jobs:
           local-dir: ./deploy/
           server-dir: ./
           dangerous-clean-slate: true
+
+      - name: Verify site is responding
+        run: |
+          echo "Waiting 30s for deployment to settle..."
+          sleep 30
+          STATUS=$(curl -o /dev/null -s -w "%{http_code}" --max-time 15 https://vizionforge.com || echo "000")
+          echo "HTTP Status: $STATUS"
+          if [ "$STATUS" = "000" ]; then
+            echo "::warning::Site did not respond - may still be starting up"
+          elif [ "$STATUS" -ge 500 ]; then
+            echo "::error::Site returned HTTP $STATUS - check Passenger logs in cPanel"
+            exit 1
+          else
+            echo "Site is up (HTTP $STATUS)"
+          fi
