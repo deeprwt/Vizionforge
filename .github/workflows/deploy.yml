@@ -37,6 +37,9 @@ jobs:
           # Verify BUILD_ID exists
           cat deploy/.next/BUILD_ID
 
+      - name: Replace with Passenger-compatible server.js
+        run: cp server.js deploy/server.js
+
       - name: Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
