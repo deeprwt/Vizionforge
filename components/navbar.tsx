@@ -278,7 +278,7 @@ export default function Navbar() {
                 <div className="bg-white shadow-xl">
                   <div className="max-w-[1400px] mx-auto px-12 py-10">
                     {/* Header row */}
-                    <div
+                    {/* <div
                       key={`header-${openMenu}`}
                       className="flex items-start justify-between mb-8 mega-header-animate"
                     >
@@ -299,7 +299,7 @@ export default function Navbar() {
                           Explore more
                         </Link>
                       )}
-                    </div>
+                    </div> */}
 
                     {/* 3-col sub-links — staggered fade-up */}
                     <div
