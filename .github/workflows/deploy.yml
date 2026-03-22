@@ -30,7 +30,8 @@ jobs:
           mkdir -p deploy
           # Copy standalone build as the app root (includes its own server.js)
           cp -r .next/standalone/* deploy/
-          # Copy static files into the .next folder
+          # Create .next directory and copy static files
+          mkdir -p deploy/.next
           cp -r .next/static deploy/.next/static
           # Copy public folder
           cp -r public deploy/public
