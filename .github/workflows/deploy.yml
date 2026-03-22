@@ -27,11 +27,15 @@ jobs:
 
       - name: Prepare deployment files
         run: |
-          mkdir -p deploy/.next/standalone
-          cp -r .next/standalone/* deploy/.next/standalone/
-          mkdir -p deploy/.next/static
-          cp -r .next/static/* deploy/.next/static/
+          mkdir -p deploy
+          # Copy standalone build as the app root
+          cp -r .next/standalone/* deploy/
+          # Copy static files into the .next folder
+          cp -r .next/static deploy/.next/static
+          # Copy public folder
           cp -r public deploy/public
+          # Copy our custom server.js (overwrite standalone's server.js)
+          cp server.js deploy/server.js
 
       - name: Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

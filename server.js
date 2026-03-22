@@ -1,7 +1,15 @@
 const path = require("path");
+const { createServer } = require("http");
+const { parse } = require("url");
+const next = require("next");
 
-// Change working directory to standalone folder
-process.chdir(path.join(__dirname, ".next", "standalone"));
+const app = next({ dev: false, dir: __dirname });
+const handle = app.getRequestHandler();
 
-// Start the standalone Next.js server
-require(path.join(__dirname, ".next", "standalone", "server.js"));
+app.prepare().then(() => {
+  createServer((req, res) => {
+    handle(req, res, parse(req.url, true));
+  }).listen(process.env.PORT || 3000, () => {
+    console.log("> Ready");
+  });
+});
