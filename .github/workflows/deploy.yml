@@ -37,8 +37,25 @@ jobs:
           # Verify BUILD_ID exists
           cat deploy/.next/BUILD_ID
 
-      - name: Replace with Passenger-compatible server.js
-        run: cp server.js deploy/server.js
+      - name: Fix build paths for cPanel server
+        run: |
+          BUILD_DIR="$(pwd)"
+          SERVER_DIR="/home/vizionforge1/vizionforge"
+          node -e "
+          const fs = require('fs');
+          const buildDir = process.argv[1];
+          const serverDir = process.argv[2];
+          const files = ['deploy/server.js', 'deploy/.next/required-server-files.json'];
+          for (const file of files) {
+            let content = fs.readFileSync(file, 'utf8');
+            // Replace CI build path with cPanel server path
+            content = content.replaceAll(buildDir, serverDir);
+            fs.writeFileSync(file, content);
+            console.log(file + ': replaced ' + buildDir + ' -> ' + serverDir);
+          }
+          " "$BUILD_DIR" "$SERVER_DIR"
+          echo "Verifying paths were fixed:"
+          grep -o 'outputFileTracingRoot[^,]*' deploy/server.js || true
 
       - name: Add Passenger .htaccess for cPanel
         run: cp deploy.htaccess deploy/.htaccess
