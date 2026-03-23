@@ -1,40 +1,30 @@
-const path = require("path");
-const fs = require("fs");
+const { createServer } = require("http");
+const { parse } = require("url");
+const next = require("next");
 
-const dir = path.join(__dirname);
-process.env.NODE_ENV = "production";
-process.chdir(__dirname);
-
-// Read config from the standalone build and fix paths at runtime
-const configPath = path.join(__dirname, ".next", "required-server-files.json");
-const { config: nextConfig } = JSON.parse(fs.readFileSync(configPath, "utf8"));
-
-// Fix build machine paths (Windows or CI) to actual server path
-if (nextConfig.outputFileTracingRoot) {
-  nextConfig.outputFileTracingRoot = dir;
-}
-if (nextConfig.turbopack && nextConfig.turbopack.root) {
-  nextConfig.turbopack.root = dir;
-}
-
-// Set the fixed config for Next.js internals
-process.env.__NEXT_PRIVATE_STANDALONE_CONFIG = JSON.stringify(nextConfig);
-
-// Use the correct standalone API: startServer (NOT the next() constructor)
-require("next");
-const { startServer } = require("next/dist/server/lib/start-server");
-
-const port = parseInt(process.env.PORT, 10) || 3000;
+const dev = process.env.NODE_ENV !== "production";
 const hostname = process.env.HOSTNAME || "0.0.0.0";
+const port = parseInt(process.env.PORT, 10) || 3000;
 
-startServer({
-  dir,
-  isDev: false,
-  config: nextConfig,
-  hostname,
-  port,
-  allowRetry: false,
-}).catch((err) => {
-  console.error(err);
-  process.exit(1);
+const app = next({ dev, hostname, port });
+const handle = app.getRequestHandler();
+
+app.prepare().then(() => {
+  createServer(async (req, res) => {
+    try {
+      const parsedUrl = parse(req.url, true);
+      await handle(req, res, parsedUrl);
+    } catch (err) {
+      console.error("Error occurred handling", req.url, err);
+      res.statusCode = 500;
+      res.end("internal server error");
+    }
+  })
+    .once("error", (err) => {
+      console.error(err);
+      process.exit(1);
+    })
+    .listen(port, hostname, () => {
+      console.log(`> Ready on http://${hostname}:${port}`);
+    });
 });
