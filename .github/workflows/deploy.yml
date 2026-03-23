@@ -37,35 +37,12 @@ jobs:
           # Verify BUILD_ID exists
           cat deploy/.next/BUILD_ID
 
-      - name: Fix build paths for cPanel server
+      - name: Replace with Passenger-compatible server.js
         run: |
-          BUILD_DIR="$(pwd)"
-          SERVER_DIR="/home/vizionforge1/vizionforge"
-          echo "Build dir: $BUILD_DIR"
-          echo "Server dir: $SERVER_DIR"
-          echo "=== BEFORE path fix ==="
-          grep -o 'outputFileTracingRoot[^,]*' deploy/server.js || echo "outputFileTracingRoot not found in server.js"
-          grep -o 'outputFileTracingRoot[^,]*' deploy/.next/required-server-files.json || echo "outputFileTracingRoot not found in json"
-          node -e "
-          const fs = require('fs');
-          const buildDir = process.argv[1];
-          const serverDir = process.argv[2];
-          const files = ['deploy/server.js', 'deploy/.next/required-server-files.json'];
-          for (const file of files) {
-            let content = fs.readFileSync(file, 'utf8');
-            const count = content.split(buildDir).length - 1;
-            console.log(file + ': found ' + count + ' occurrences of build path');
-            content = content.replaceAll(buildDir, serverDir);
-            fs.writeFileSync(file, content);
-            console.log(file + ': replaced ' + buildDir + ' -> ' + serverDir);
-          }
-          " "$BUILD_DIR" "$SERVER_DIR"
-          echo "=== AFTER path fix ==="
-          grep -o 'outputFileTracingRoot[^,]*' deploy/server.js
-          echo "=== First 5 lines of deploy/server.js ==="
-          head -5 deploy/server.js
-          echo "=== Checking startServer usage ==="
-          grep -c 'startServer' deploy/server.js && echo "OK: uses startServer" || echo "WARNING: startServer not found!"
+          cp server.js deploy/server.js
+          echo "=== Custom server.js copied ==="
+          head -3 deploy/server.js
+          grep -c 'startServer' deploy/server.js && echo "OK: uses startServer API"
 
       - name: Add Passenger .htaccess for cPanel
         run: cp deploy.htaccess deploy/.htaccess
