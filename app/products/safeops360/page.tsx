@@ -48,7 +48,7 @@ const metrics = [
 
 const liveStats = [
   { value: "5.1M", label: "Safe Man-Hours", trend: "↑ 4.2% MoM", color: "text-teal-500", bg: "bg-teal-50", border: "border-teal-200" },
-  { value: "142", label: "Days Without LTI", color: "text-gold", bg: "bg-gold/5", border: "border-gold/20" },
+  { value: "142", label: "Days Without LTI", color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-200" },
   { value: "87", label: "Near Miss Reports", trend: "↑ 15.2%", color: "text-emerald-500", bg: "bg-emerald-50", border: "border-emerald-200" },
   { value: "28", label: "Open Findings", trend: "5 Critical", trendColor: "text-red-500", color: "text-red-500", bg: "bg-red-50", border: "border-red-200" },
   { value: "3,847", label: "Total Manpower", color: "text-blue-500", bg: "bg-blue-50", border: "border-blue-200" },
@@ -67,10 +67,10 @@ const checkpointDecisions = ["✓ Compliance", "✗ NC Major", "⚠ NC Minor", "
 const checkpointColors = ["bg-emerald-50 text-emerald-600 border-emerald-200", "bg-red-50 text-red-600 border-red-200", "bg-amber-50 text-amber-600 border-amber-200", "bg-blue-50 text-blue-600 border-blue-200", "bg-purple-50 text-purple-600 border-purple-200"]
 
 const auditLifecycle = [
-  { num: "1", title: "Create Audit", desc: "Admin selects project, region, disciplines, assigns auditors", color: "bg-gold/5 border-gold/20" },
+  { num: "1", title: "Create Audit", desc: "Admin selects project, region, disciplines, assigns auditors", color: "bg-amber-50 border-amber-200" },
   { num: "2", title: "Execute Checkpoints", desc: "Decisions, photos, comments per checkpoint", color: "bg-teal-50 border-teal-200" },
   { num: "3", title: "Review & Approve", desc: "Project Head reviews, approves or returns", color: "bg-blue-50 border-blue-200" },
-  { num: "4", title: "Corrective Action", desc: "Auditee uploads evidence, closes NCs", color: "bg-amber-50 border-amber-200" },
+  { num: "4", title: "Corrective Action", desc: "Auditee uploads evidence, closes NCs", color: "bg-purple-50 border-purple-200" },
   { num: "5", title: "Report & Close", desc: "Auto-generated interim/final PDF reports", color: "bg-emerald-50 border-emerald-200" },
 ]
 
@@ -236,7 +236,7 @@ export default function SafeOps360Page() {
 
         {/* Tab 1: Quality Audit */}
         <TabsContent value="quality">
-          <SectionWrapper label="Module 1 — Quality Audit" title={<>Checkpoint-Level <em>Audit Management.</em></>}>
+          <SectionWrapper label="Quality Audit" title={<>Checkpoint-Level <em>Audit Management.</em></>}>
             <div className="grid lg:grid-cols-2 gap-8">
               <div>
                 <p className="text-sm text-navy/60 leading-relaxed mb-5">5 user roles with granular RBAC. 7 discipline types (Structure, MEP, Architecture, Fire & Safety, Quality Docs + custom). Checkpoint-level photo evidence. Interim & final PDF reports with company branding.</p>
@@ -288,7 +288,7 @@ export default function SafeOps360Page() {
 
         {/* Tab 2: EHS Audit */}
         <TabsContent value="ehs">
-          <SectionWrapper label="Module 2 — EHS Audit" title={<>ISO 45001 Aligned · <em>CAPA Lifecycle · NC Register.</em></>}>
+          <SectionWrapper label="EHS Audit" title={<>ISO 45001 Aligned · <em>CAPA Lifecycle · NC Register.</em></>}>
             <div className="grid lg:grid-cols-2 gap-8">
               <div>
                 <p className="text-sm text-navy/60 leading-relaxed mb-5">Pre-configured audit areas mapping ISO 45001 Clauses 4.1 through 10.3. Auto-numbered TRIL-series audit request IDs with project/region tagging. Complete NC register with root cause analysis.</p>
@@ -340,7 +340,7 @@ export default function SafeOps360Page() {
 
         {/* Tab 3: MIS Dashboard */}
         <TabsContent value="mis">
-          <SectionWrapper label="Module 3 — MIS Safety Dashboard" title={<>Three-Tier Reporting · <em>8 Real-Time KPIs · ESG Export.</em></>}>
+          <SectionWrapper label="MIS Safety Dashboard" title={<>Three-Tier Reporting · <em>8 Real-Time KPIs · ESG Export.</em></>}>
             <div className="grid sm:grid-cols-3 gap-4">
               {misTiers.map((tier) => (
                 <Card key={tier.title} className="p-5">
@@ -399,7 +399,7 @@ export default function SafeOps360Page() {
 
         {/* Tab 4: AI Engine */}
         <TabsContent value="ai">
-          <SectionWrapper label="Module 4 — AI Engine" title={<>6 AI Capabilities · <em>From Reactive to Predictive Safety.</em></>}>
+          <SectionWrapper label="AI Engine" title={<>6 AI Capabilities · <em>From Reactive to Predictive Safety.</em></>}>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {aiCapabilities.map((cap) => (
                 <Card key={cap.title} className="p-5">

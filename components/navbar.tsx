@@ -49,17 +49,6 @@ const navItems: NavItem[] = [
       { href: "/products/los-lms", label: "LOS / LMS", description: "Integrated Loan Origination & Management." },
     ],
   },
-  {
-    label: "Company",
-    tagline: "Get to Know VizionForge",
-    explore: "/about",
-    children: [
-      { href: "/about", label: "About Us", description: "Our Story, Mission & Values." },
-      { href: "/case-studies", label: "Case Studies", description: "Real Results for Real Enterprises." },
-      { href: "/engagement", label: "Engagement Model", description: "Flexible Delivery Partnerships." },
-      { href: "/why-us", label: "Why Us", description: "What Sets VizionForge Apart." },
-    ],
-  },
 ]
 
 /* ------------------------------------------------------------------ */
@@ -221,6 +210,25 @@ export default function Navbar() {
                   </button>
                 </li>
               ))}
+
+              <li>
+                <Link
+                  href="/about"
+                  onMouseEnter={() => setOpenMenu(null)}
+                  className={cn(
+                    "relative px-5 h-[68px] inline-flex items-center text-[0.8rem] font-medium uppercase tracking-[0.04em] transition-colors",
+                    pathname === "/about" ? "text-gold" : "text-white hover:text-gold"
+                  )}
+                >
+                  About Us
+                  <span
+                    className={cn(
+                      "absolute bottom-0 left-5 right-5 h-[2px] bg-gold transition-transform origin-left duration-300",
+                      pathname === "/about" ? "scale-x-100" : "scale-x-0"
+                    )}
+                  />
+                </Link>
+              </li>
             </ul>
 
             {/* CTA */}
@@ -427,6 +435,17 @@ export default function Navbar() {
                   <ChevronRight size={18} className="text-navy/30 shrink-0" />
                 </button>
               ))}
+
+              <Link
+                href="/about"
+                onClick={closeMobile}
+                className={cn(
+                  "flex items-center px-6 py-4 text-[1.05rem] font-medium transition-colors border-b border-gray-50",
+                  pathname === "/about" ? "text-gold" : "text-navy hover:text-gold"
+                )}
+              >
+                About Us
+              </Link>
 
               <Link
                 href="/contact"

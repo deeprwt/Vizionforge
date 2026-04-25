@@ -45,7 +45,7 @@ const metrics = [
 ]
 
 const pipelineStages = [
-  { num: "01", title: "Register & CKYC", desc: "OTP + PAN/Aadhaar", color: "bg-gold/5 border-gold/20 text-gold" },
+  { num: "01", title: "Register & CKYC", desc: "OTP + PAN/Aadhaar", color: "bg-amber-50 border-amber-200 text-amber-600" },
   { num: "02", title: "Lead Application", desc: "Intent + Category", color: "bg-teal-50 border-teal-200 text-teal-500" },
   { num: "03", title: "Basic Application", desc: "Borrower+Project Data", color: "bg-blue-50 border-blue-200 text-blue-500" },
   { num: "04", title: "Appraisal", desc: "Eligibility Check", color: "bg-purple-50 border-purple-200 text-purple-500" },
@@ -274,7 +274,7 @@ export default function LosLmsPage() {
             <div className="flex flex-col sm:flex-row items-center gap-3 mb-8">
               {[
                 { title: "MAKER", desc: "Creator fills & saves\nDraft → Submitted", bg: "bg-teal-50 border-teal-200 text-teal-600" },
-                { title: "CHECKER", desc: "Approver reviews & freezes\nSubmitted → Frozen", bg: "bg-gold/5 border-gold/20 text-gold" },
+                { title: "CHECKER", desc: "Approver reviews & freezes\nSubmitted → Frozen", bg: "bg-amber-50 border-amber-200 text-amber-600" },
                 { title: "SYSTEM", desc: "Timestamp & audit logged\nFrozen → Locked", bg: "bg-emerald-50 border-emerald-200 text-emerald-600" },
               ].map((step, i) => (
                 <div key={step.title} className="flex items-center gap-3 w-full sm:w-auto">

@@ -43,7 +43,7 @@ const metrics = [
 ]
 
 const layers = [
-  { num: "01", label: "AUTHOR", title: "React Bowtie Builder", desc: "Role-based authoring · 6-stage workflow: Draft → Safety Assessment → Compliance Review → Incident Investigation → Final Risk Review → Released · Every change versioned and signed", bg: "bg-gold/5", border: "border-gold/20", labelColor: "text-gold" },
+  { num: "01", label: "AUTHOR", title: "React Bowtie Builder", desc: "Role-based authoring · 6-stage workflow: Draft → Safety Assessment → Compliance Review → Incident Investigation → Final Risk Review → Released · Every change versioned and signed", bg: "bg-amber-50", border: "border-amber-200", labelColor: "text-amber-600" },
   { num: "02", label: "WATCH", title: "Sentio Agent — Signal Intelligence", desc: "Signal Adapter → Bowtie Config Engine → Threshold Engine → Barrier Health Score (100 − signals − CAPA overdue − recurrence) → Escalation Flow · Pre-alerts <60 min", bg: "bg-red-50", border: "border-red-200", labelColor: "text-red-500" },
   { num: "03", label: "REVIEW", title: "GRC Layer — Board & Compliance", desc: "Live KRI dashboards · BRSR-ready audit trails · CAPA tracking · Board reporting auto-generated from live data", bg: "bg-teal-50", border: "border-teal-200", labelColor: "text-teal-500" },
 ]

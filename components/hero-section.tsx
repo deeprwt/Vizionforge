@@ -33,7 +33,7 @@ export default function HeroSection({
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-5 pb-16 sm:px-12 md:pb-24">
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-5 pt-16 pb-16 sm:px-12 md:pt-20 md:pb-24">
         {/* Eyebrow */}
         <div className="mb-4 flex items-center gap-3 animate-fade-up">
           <span className="block h-[2px] w-8 bg-gold" />
