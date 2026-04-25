@@ -10,9 +10,14 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "hello@vizionforge.com" },
-  { icon: Phone, label: "Phone", value: "+91 22 6890 0000" },
-  { icon: MapPin, label: "Office", value: "Mumbai, Maharashtra, India" },
+  { icon: Mail, label: "Email", value: "harpreet@vizionforge.com" },
+  { icon: Phone, label: "Phone", value: "+91 70422 97604" },
+  {
+    icon: MapPin,
+    label: "Bangalore Headquarters",
+    value:
+      "Vizionforge Technologies Pvt Ltd, WeWork Vaishnavi Signature, No.78/9, Outer Ring Road, Bellandur Village, Varthur Hobli, Bangalore, Karnataka 560103, IN",
+  },
   { icon: Clock, label: "Hours", value: "Mon – Fri, 9:30 AM – 6:30 PM IST" },
 ]
 

@@ -1,152 +1,108 @@
 import Link from "next/link"
+import {
+  ArrowRight,
+  Layers,
+  Cloud,
+  Workflow,
+  CheckCircle2,
+  Sparkles,
+  Award,
+  Users,
+} from "lucide-react"
 import HeroSection from "@/components/hero-section"
 import SectionWrapper from "@/components/section-wrapper"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { Card, CardHeader, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, CheckCircle } from "lucide-react"
 
-/* ---------- OutSystems data ---------- */
+/* ------------------------------------------------------------------ */
+/*  Practice cards                                                     */
+/* ------------------------------------------------------------------ */
 
-const osTeam = [
-  { value: "3", label: "Solution Architects" },
-  { value: "2", label: "Tech Leads" },
-  { value: "15", label: "OS Developers" },
-  { value: "10", label: "Mobile Developers" },
-]
-
-const osCapabilities = [
-  "Reactive Web & Progressive Web Apps",
-  "Enterprise App Modernization",
-  "Case Management Framework (CMF)",
-  "API Integration (REST, SOAP, SAP, Salesforce)",
-  "ODC Migration & Cloud-Native",
-  "Architecture Review & Health Check",
-  "Performance Tuning & Tech Debt Reduction",
-]
-
-const osCapabilitiesStats = [
-  { value: "33+", label: "Certified" },
-  { value: "5\u2605", label: "Rating" },
-  { value: "450", label: "Action Objects" },
-]
-
-const osCertifications = [
-  "Associate Reactive Developer",
-  "Professional Web Developer",
-  "Architecture Specialist",
-  "Front-End Specialist",
-  "Tech Lead Certification",
-  "In-House Academy \u2014 100% Team Certified",
-]
-
-const osCertificationsStats = [
-  { value: "5", label: "Cert Tracks" },
-  { value: "100%", label: "Certified Team" },
-  { value: "3", label: "Lead Architects" },
-]
-
-const osHighlights = [
-  "5\u2605 Customer Rating on OutSystems",
-  "Healthcare Prescription & Pharmacy Apps",
-  "CMF Experts \u2014 Insurance & BFSI",
-  "Tamkeen \u2014 Kingdom of Bahrain Labor Fund",
-  "BFSI Call Desk & Lead Management",
-  "50+ API Integrations (SAP, Salesforce, REST)",
-]
-
-const osHighlightsStats = [
-  { value: "30+", label: "Apps" },
-  { value: "6", label: "Verticals" },
-  { value: "15x", label: "Faster" },
-]
-
-/* ---------- Microsoft data ---------- */
-
-const microsoftCards = [
+const practices = [
   {
-    title: "Power Apps",
-    body: "Canvas & Model-Driven apps. Dataverse, custom connectors, component libraries. Citizen-dev governance frameworks.",
+    num: "01",
+    name: "OutSystems",
+    badge: "Premier Practice",
+    title: "Low-Code at Enterprise Scale",
+    desc: "We architect, build and migrate enterprise applications on OutSystems — from complex case management for 10,000+ users to government portals. 100% certified team, 5★ marketplace rating.",
+    icon: Layers,
+    accent: "from-[#ff4713] to-[#D4A843]",
+    accentColor: "text-[#ff4713]",
+    bgAccent: "bg-[#fff0eb]",
+    borderAccent: "border-[#ffc9b3]",
+    metrics: [
+      { v: "5★", l: "Rating" },
+      { v: "33+", l: "Certified" },
+      { v: "30+", l: "Apps" },
+      { v: "6", l: "Verticals" },
+    ],
+    capabilities: [
+      "Enterprise App Development",
+      "Legacy System Migration",
+      "Case Management & BPM",
+      "ODC Migration & Modernization",
+    ],
+    href: "/services/outsystems",
   },
   {
-    title: "Power Automate",
-    body: "Cloud flows, desktop flows (RPA), business process flows. Integration with 400+ connectors including SAP and Salesforce.",
+    num: "02",
+    name: "Microsoft 365",
+    badge: "Microsoft Practice",
+    title: "Power Platform & Azure AI",
+    desc: "We enable enterprises to build apps, automate processes, and deploy AI within the Microsoft ecosystem. From citizen developer programs with governance to Azure AI document processing replacing 40+ reviewers with 12 agents.",
+    icon: Cloud,
+    accent: "from-[#0078d4] to-[#D4A843]",
+    accentColor: "text-[#0078d4]",
+    bgAccent: "bg-[#e8f4fd]",
+    borderAccent: "border-[#a8d4f2]",
+    metrics: [
+      { v: "500+", l: "Citizen Devs" },
+      { v: "120+", l: "Apps / 6 Mo" },
+      { v: "85%", l: "Time Saved" },
+      { v: "$1.2M", l: "Saved / yr" },
+    ],
+    capabilities: [
+      "Citizen Developer Enablement",
+      "Process Automation (RPA + Cloud)",
+      "AI Document Processing",
+      "Copilot & AI Agents",
+    ],
+    href: "/services/microsoft-365",
   },
   {
-    title: "Power BI",
-    body: "Enterprise dashboards, paginated reports, dataflows. Row-level security, incremental refresh, embedded analytics.",
-  },
-  {
-    title: "SharePoint Modern",
-    body: "Intranet portals, document management, SPFx web parts. Migration from classic to modern. Viva Connections.",
-  },
-  {
-    title: "Copilot & AI Builder",
-    body: "Microsoft 365 Copilot integrations, AI Builder models for document processing, prediction, and object detection.",
-  },
-  {
-    title: "Azure Integration",
-    body: "Azure Functions, Logic Apps, API Management, Service Bus. Hybrid cloud architectures with on-premise connectors.",
+    num: "03",
+    name: "ServiceNow",
+    badge: "ServiceNow Practice",
+    title: "Agentic AI & Workflow",
+    desc: "We implement, customize and extend ServiceNow — from ITSM/HRSD to autonomous AI agents that resolve 90% of P3/P4 incidents without human intervention. Full stack: ITSM, ITOM, HRSD, CSM, Now Assist, Agentic AI.",
+    icon: Workflow,
+    accent: "from-[#81b535] to-[#D4A843]",
+    accentColor: "text-[#81b535]",
+    bgAccent: "bg-[#f0f8e0]",
+    borderAccent: "border-[#c2e8a0]",
+    metrics: [
+      { v: "70%", l: "MTTR ↓" },
+      { v: "90%", l: "Auto-Fix" },
+      { v: "8K+", l: "Employees" },
+      { v: "$2M+", l: "Saved / yr" },
+    ],
+    capabilities: [
+      "ITSM Implementation",
+      "Agentic AI & Self-Healing IT",
+      "HRSD & Employee Service Hub",
+      "ITOM & Event Management",
+    ],
+    href: "/services/servicenow",
   },
 ]
 
-/* ---------- ServiceNow data ---------- */
-
-const serviceNowCards = [
-  {
-    title: "ITSM & ITOM",
-    body: "Incident, Problem, Change & Release Management. Discovery, Service Mapping, Event Management. CMDB health and governance.",
-  },
-  {
-    title: "HRSD & CSM",
-    body: "Employee Center, Case & Knowledge Management, Lifecycle Events. Customer Service Management with omni-channel support.",
-  },
-  {
-    title: "Service Portal & UI",
-    body: "Custom Service Portal development, UI Builder, Workspace configuration. Responsive, accessible, brand-aligned experiences.",
-  },
-  {
-    title: "Agentic AI",
-    body: "Now Assist, Virtual Agent, Predictive Intelligence. Agentic AI workflows for autonomous ticket resolution and proactive service.",
-  },
-]
-
-/* ---------- Helpers ---------- */
-
-function StatBox({ stats }: { stats: { value: string; label: string }[] }) {
-  return (
-    <div className="rounded-sm bg-navy p-6 flex flex-col gap-4 justify-center">
-      {stats.map((s) => (
-        <div key={s.label} className="text-center">
-          <span className="font-display text-[2rem] font-bold text-gold block leading-none">
-            {s.value}
-          </span>
-          <span className="text-[0.75rem] text-ice/70 mt-1 block">{s.label}</span>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-function ListItems({ items }: { items: string[] }) {
-  return (
-    <ul className="flex flex-col gap-3">
-      {items.map((item) => (
-        <li key={item} className="flex items-start gap-2.5 text-[0.92rem] text-navy/80">
-          <CheckCircle className="h-4 w-4 text-gold shrink-0 mt-0.5" />
-          {item}
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-/* ---------- Page ---------- */
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
 
 export default function ServicesPage() {
   return (
     <>
-      {/* HERO */}
       <HeroSection
         size="compact"
         eyebrow="Platform Capabilities"
@@ -156,120 +112,153 @@ export default function ServicesPage() {
             <em className="text-gold italic">One Delivery Team.</em>
           </>
         }
+        subtitle="OutSystems, Microsoft 365, ServiceNow — engineered, integrated, and delivered by a single certified team. Pick a practice to dive deeper."
       />
 
-      {/* OUTSYSTEMS */}
-      <SectionWrapper
-        label="OutSystems Practice"
-        title={
-          <>
-            Low-Code Development at{" "}
-            <em className="text-gold italic">Enterprise Scale</em>
-          </>
-        }
-        subtitle="Reactive Web & Mobile, Enterprise Modernization, Case Management, API Integration, ODC Migration and Architecture Review — delivered by a 30-strong certified team."
-      >
-        {/* Team stat cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-          {osTeam.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-sm border border-navy/10 bg-white p-5 text-center shadow-sm"
+      {/* ============================================================ */}
+      {/*  Practice Cards                                               */}
+      {/* ============================================================ */}
+      <SectionWrapper>
+        <div className="grid lg:grid-cols-3 gap-6">
+          {practices.map((p) => (
+            <Card
+              key={p.name}
+              className="group flex flex-col overflow-hidden border-l-0 hover:-translate-y-1 transition-transform duration-300"
             >
-              <span className="font-display text-[2rem] font-bold text-gold block leading-none">
-                {stat.value}
-              </span>
-              <span className="text-[0.82rem] text-navy/60 mt-1 block">{stat.label}</span>
-            </div>
+              {/* Gradient banner */}
+              <div className={`h-1.5 bg-gradient-to-r ${p.accent}`} />
+
+              <CardHeader className="p-6 pb-3">
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className={`w-12 h-12 rounded-md ${p.bgAccent} ${p.borderAccent} border flex items-center justify-center`}
+                  >
+                    <p.icon className={`h-6 w-6 ${p.accentColor}`} />
+                  </div>
+                  <span
+                    className={`text-[0.65rem] font-bold uppercase tracking-[0.15em] px-3 py-1 rounded-full ${p.bgAccent} ${p.accentColor} ${p.borderAccent} border`}
+                  >
+                    {p.badge}
+                  </span>
+                </div>
+
+                <span className="font-mono text-[0.65rem] tracking-[0.16em] uppercase text-gold/70">
+                  Practice {p.num} — {p.name}
+                </span>
+                <h3 className="font-display text-xl font-bold text-navy mt-1.5">
+                  {p.title}
+                </h3>
+              </CardHeader>
+
+              <CardContent className="p-6 pt-0 flex-1 flex flex-col">
+                <p className="text-sm text-navy/60 leading-relaxed mb-5">
+                  {p.desc}
+                </p>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-4 gap-2 mb-5 rounded-md bg-navy/[0.02] border border-navy/8 p-3">
+                  {p.metrics.map((m) => (
+                    <div key={m.l} className="text-center">
+                      <span
+                        className={`font-display font-bold text-base block leading-none ${p.accentColor}`}
+                      >
+                        {m.v}
+                      </span>
+                      <span className="text-[0.55rem] text-navy/50 mt-1 block leading-tight">
+                        {m.l}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Capabilities */}
+                <ul className="flex flex-col gap-2 mb-6">
+                  {p.capabilities.map((c) => (
+                    <li
+                      key={c}
+                      className="flex items-start gap-2 text-[0.82rem] text-navy/75"
+                    >
+                      <CheckCircle2
+                        className={`h-3.5 w-3.5 ${p.accentColor} shrink-0 mt-0.5`}
+                      />
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href={p.href}
+                  className="mt-auto inline-flex items-center justify-between gap-1 px-4 py-3 rounded-sm bg-navy text-white text-sm font-bold hover:bg-navy-mid transition-colors"
+                >
+                  Explore {p.name}
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </CardContent>
+            </Card>
           ))}
         </div>
-
-        {/* Tabs */}
-        <Tabs defaultValue="capabilities" className="w-full">
-          <TabsList className="w-full justify-start">
-            <TabsTrigger value="capabilities">Capabilities</TabsTrigger>
-            <TabsTrigger value="certifications">Certifications</TabsTrigger>
-            <TabsTrigger value="highlights">Highlights</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="capabilities">
-            <div className="grid md:grid-cols-[1fr_240px] gap-6 mt-4">
-              <ListItems items={osCapabilities} />
-              <StatBox stats={osCapabilitiesStats} />
-            </div>
-          </TabsContent>
-
-          <TabsContent value="certifications">
-            <div className="grid md:grid-cols-[1fr_240px] gap-6 mt-4">
-              <ListItems items={osCertifications} />
-              <StatBox stats={osCertificationsStats} />
-            </div>
-          </TabsContent>
-
-          <TabsContent value="highlights">
-            <div className="grid md:grid-cols-[1fr_240px] gap-6 mt-4">
-              <ListItems items={osHighlights} />
-              <StatBox stats={osHighlightsStats} />
-            </div>
-          </TabsContent>
-        </Tabs>
       </SectionWrapper>
 
-      {/* MICROSOFT PRACTICE */}
+      {/* ============================================================ */}
+      {/*  Why VizionForge                                              */}
+      {/* ============================================================ */}
       <SectionWrapper
         dark
-        label="Microsoft Practice"
+        label="Why VizionForge"
         title={
           <>
-            M365 &amp; Power Platform{" "}
-            <em className="text-gold italic">End to End</em>
+            One Team. Three Platforms.{" "}
+            <em className="text-gold italic">Zero Hand-offs.</em>
           </>
         }
+        subtitle="Most partners specialize in one stack. We deliver across all three — with the integration glue, governance and AI overlays that real enterprises need."
       >
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {microsoftCards.map((item) => (
-            <Card
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            {
+              icon: Award,
+              title: "100% Certified",
+              desc: "Every developer carries platform certifications. In-house academy gets new hires production-ready in 6 weeks.",
+            },
+            {
+              icon: Users,
+              title: "Senior-Led Pods",
+              desc: "Every engagement is led by a Solution Architect + Tech Lead. We don't push junior teams onto critical workstreams.",
+            },
+            {
+              icon: Sparkles,
+              title: "AI-First Delivery",
+              desc: "Now Assist, Azure OpenAI, AI Builder, OutSystems AI Mentor — embedded into every solution from day one, not retrofitted.",
+            },
+          ].map((item) => (
+            <div
               key={item.title}
-              className="bg-navy border-l-gold/50 border border-white/10 p-6 hover:border-gold/40"
+              className="rounded-sm bg-white/5 border border-white/10 p-6 backdrop-blur-sm hover:border-gold/40 transition-colors"
             >
-              <CardHeader className="p-0 pb-3">
-                <CardTitle className="text-white">{item.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <CardDescription className="text-ice/70">{item.body}</CardDescription>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </SectionWrapper>
-
-      {/* SERVICENOW */}
-      <SectionWrapper
-        label="ServiceNow Practice"
-        title={
-          <>
-            ITSM &amp; Workflow{" "}
-            <em className="text-gold italic">Automation</em>
-          </>
-        }
-      >
-        <div className="grid md:grid-cols-2 gap-5">
-          {serviceNowCards.map((item) => (
-            <Card key={item.title} className="p-6">
-              <CardHeader className="p-0 pb-3">
-                <CardTitle>{item.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <CardDescription>{item.body}</CardDescription>
-              </CardContent>
-            </Card>
+              <div className="w-10 h-10 rounded-md bg-gold/15 flex items-center justify-center mb-4">
+                <item.icon className="h-5 w-5 text-gold" />
+              </div>
+              <h3 className="text-white font-bold text-base mb-2">
+                {item.title}
+              </h3>
+              <p className="text-ice/70 text-sm leading-relaxed">{item.desc}</p>
+            </div>
           ))}
         </div>
 
-        <div className="text-center mt-10">
+        <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 rounded-sm bg-gold/10 border border-gold/30 p-6">
+          <div>
+            <h3 className="text-white font-bold text-lg">
+              Not sure which practice fits your problem?
+            </h3>
+            <p className="text-ice/70 text-sm mt-1">
+              Schedule a 30-minute discovery call. We'll map your needs to the
+              right stack — or a hybrid.
+            </p>
+          </div>
           <Button asChild>
             <Link href="/contact">
-              Schedule a Discovery Call <ArrowRight className="ml-2 h-4 w-4" />
+              Schedule Discovery Call <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>

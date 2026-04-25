@@ -3,10 +3,10 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const services = [
-  { label: "OutSystems Practice", href: "/services" },
-  { label: "Microsoft 365", href: "/services" },
-  { label: "ServiceNow", href: "/services" },
-  { label: "Agentic AI", href: "/services" },
+  { label: "OutSystems Practice", href: "/services/outsystems" },
+  { label: "Microsoft 365", href: "/services/microsoft-365" },
+  { label: "ServiceNow", href: "/services/servicenow" },
+  { label: "Agentic AI", href: "/services/servicenow" },
 ];
 
 const products = [
@@ -72,9 +72,14 @@ export default function Footer() {
               Enterprise software solutions that transform the way organisations operate,
               innovate, and grow.
             </p>
-            <p className="mt-4 text-xs leading-relaxed text-white/40">
-              Hyderabad, India
-            </p>
+            <div className="mt-4 text-xs leading-relaxed text-white/40">
+              <p className="font-semibold text-white/60 mb-1">Bangalore Headquarters</p>
+              <p>
+                Vizionforge Technologies Pvt Ltd, WeWork Vaishnavi Signature,
+                No.78/9, Outer Ring Road, Bellandur Village, Varthur Hobli,
+                Bangalore, Karnataka 560103, IN
+              </p>
+            </div>
           </div>
 
           {/* Col 2 — Services */}
@@ -118,7 +123,7 @@ export default function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-white/40">&copy; 2026 VizionForge</p>
           <p className="text-xs text-white/40">
-            contact@vizionforge.com&nbsp;&middot;&nbsp;+91 70422 97604
+            harpreet@vizionforge.com&nbsp;&middot;&nbsp;+91 70422 97604
           </p>
         </div>
       </div>

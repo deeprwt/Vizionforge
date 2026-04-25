@@ -32,10 +32,10 @@ const navItems: NavItem[] = [
     tagline: "Enterprise Solutions That Deliver",
     explore: "/services",
     children: [
-      { href: "/services", label: "OutSystems Practice", description: "Rapid Low-Code Application Delivery." },
-      { href: "/services", label: "Microsoft 365", description: "Modern Workplace & Power Platform." },
-      { href: "/services", label: "ServiceNow", description: "IT Workflow Automation at Scale." },
-      { href: "/services", label: "Agentic AI", description: "Intelligent Automation with AI Agents." },
+      { href: "/services/outsystems", label: "OutSystems Practice", description: "Rapid Low-Code Application Delivery." },
+      { href: "/services/microsoft-365", label: "Microsoft 365", description: "Modern Workplace & Power Platform." },
+      { href: "/services/servicenow", label: "ServiceNow", description: "IT Workflow Automation at Scale." },
+      { href: "/services/servicenow", label: "Agentic AI", description: "Intelligent Automation with AI Agents." },
     ],
   },
   {
