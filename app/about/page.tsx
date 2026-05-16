@@ -9,14 +9,14 @@ const stats = [
   { value: "150+", label: "Collective Years MNC & Global Exp." },
   { value: "33+", label: "Certified Professionals" },
   { value: "30+", label: "Enterprise Apps Delivered" },
-  { value: "5\u2605", label: "OutSystems Rating" },
+  { value: "5★", label: "OutSystems Rating" },
 ]
 
 const pillars = [
   {
     label: "Expertise",
     title: "Certified Across Platforms",
-    body: "Full-stack capability across OutSystems, Microsoft 365, Power Platform, ServiceNow & Mendix \u2014 UI, backend, API integration, mobile and AI/ML layers.",
+    body: "Full-stack capability across OutSystems, Microsoft 365, Power Platform, ServiceNow & Mendix — UI, backend, API integration, mobile and AI/ML layers.",
   },
   {
     label: "Approach",
@@ -26,7 +26,7 @@ const pillars = [
   {
     label: "Delivery",
     title: "Agile, QA-Gated Sprints",
-    body: "Agile sprint cycles from 4\u201330 weeks. In-house training academy. Rigorous QA and code review gates at every milestone \u2014 no exceptions.",
+    body: "Agile sprint cycles from 4–30 weeks. In-house training academy. Rigorous QA and code review gates at every milestone — no exceptions.",
   },
 ]
 
@@ -34,17 +34,17 @@ const certifications = [
   {
     label: "OutSystems",
     title: "5 Certification Tracks",
-    body: "Associate Reactive Developer \u00b7 Professional Web Developer \u00b7 Architecture Specialist \u00b7 Front-End Specialist \u00b7 Tech Lead. In-house academy ensures 100% team certification.",
+    body: "Associate Reactive Developer · Professional Web Developer · Architecture Specialist · Front-End Specialist · Tech Lead. In-house academy ensures 100% team certification.",
   },
   {
     label: "Microsoft",
     title: "Power Platform & Azure",
-    body: "PL-100 Power Apps Maker \u00b7 PL-200 Power Platform Functional Consultant \u00b7 PL-400 Developer \u00b7 PL-600 Solution Architect \u00b7 AZ-204 Azure Developer.",
+    body: "PL-100 Power Apps Maker · PL-200 Power Platform Functional Consultant · PL-400 Developer · PL-600 Solution Architect · AZ-204 Azure Developer.",
   },
   {
     label: "ServiceNow",
     title: "ITSM & Agentic AI",
-    body: "Certified System Administrator \u00b7 Certified Application Developer \u00b7 ITSM Implementation Specialist \u00b7 Now Assist & Agentic AI early-access program.",
+    body: "Certified System Administrator · Certified Application Developer · ITSM Implementation Specialist · Now Assist & Agentic AI early-access program.",
   },
 ]
 
@@ -54,7 +54,7 @@ const clients = [
   { name: "Reliance", desc: "General Insurance" },
   { name: "Suzlon", desc: "Renewable Energy" },
   { name: "New India Assurance", desc: "Public Sector Insurance" },
-  { name: "Tamkeen \u00b7 Bahrain", desc: "Kingdom of Bahrain Labor Fund" },
+  { name: "Tamkeen · Bahrain", desc: "Kingdom of Bahrain Labor Fund" },
 ]
 
 export default function AboutPage() {
@@ -81,7 +81,7 @@ export default function AboutPage() {
             <em className="text-gold italic">Deep Specialists.</em>
           </>
         }
-        subtitle="VizionForge is a specialized Low-Code and AI-first engineering firm \u2014 built to be your trusted enterprise delivery partner across OutSystems, Microsoft and ServiceNow. We are not a body-shop. We bring an Advisory Technical Board, domain consultants, and an in-house training academy to every engagement."
+        subtitle="VizionForge is a specialized Low-Code and AI-first engineering firm — built to be your trusted enterprise delivery partner across OutSystems, Microsoft and ServiceNow. We are not a body-shop. We bring an Advisory Technical Board, domain consultants, and an in-house training academy to every engagement."
       >
         {/* Stat cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-16">

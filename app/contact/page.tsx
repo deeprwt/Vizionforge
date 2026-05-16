@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, FormEvent } from "react"
+import { toast } from "sonner"
 import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react"
 import HeroSection from "@/components/hero-section"
 import SectionWrapper from "@/components/section-wrapper"
@@ -46,6 +47,8 @@ export default function ContactPage() {
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
     }
 
+    const toastId = toast.loading("Sending your message...")
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -57,9 +60,18 @@ export default function ContactPage() {
         throw new Error(json.error || "Something went wrong.")
       }
       setStatus("success")
+      toast.success("Message sent successfully", {
+        id: toastId,
+        description: "A solution architect will reach out within 4 business hours.",
+      })
     } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.")
+      const msg = err instanceof Error ? err.message : "Something went wrong."
+      setErrorMsg(msg)
       setStatus("error")
+      toast.error("Failed to send message", {
+        id: toastId,
+        description: msg,
+      })
     }
   }
 

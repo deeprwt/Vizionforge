@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Playfair_Display, DM_Sans, DM_Mono } from "next/font/google"
+import { Toaster } from "sonner"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import "./globals.css"
@@ -46,6 +47,7 @@ export default function RootLayout({
         <Navbar />
         <main className="pt-[68px]">{children}</main>
         <Footer />
+        <Toaster position="top-center" richColors closeButton />
       </body>
     </html>
   )
