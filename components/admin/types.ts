@@ -1,0 +1,16 @@
+export interface AdminProfile {
+  name: string
+  email: string
+}
+
+export function getInitials(name: string) {
+  return (
+    name
+      .split(/[\s._-]+/)
+      .map((part) => part[0])
+      .filter(Boolean)
+      .slice(0, 2)
+      .join("")
+      .toUpperCase() || "?"
+  )
+}

@@ -20,6 +20,7 @@ const company = [
   { label: "About Us", href: "/about" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Engagement Model", href: "/engagement" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

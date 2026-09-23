@@ -229,6 +229,25 @@ export default function Navbar() {
                   />
                 </Link>
               </li>
+
+              <li>
+                <Link
+                  href="/blog"
+                  onMouseEnter={() => setOpenMenu(null)}
+                  className={cn(
+                    "relative px-5 h-[68px] inline-flex items-center text-[0.8rem] font-medium uppercase tracking-[0.04em] transition-colors",
+                    pathname.startsWith("/blog") ? "text-gold" : "text-white hover:text-gold"
+                  )}
+                >
+                  Blog
+                  <span
+                    className={cn(
+                      "absolute bottom-0 left-5 right-5 h-[2px] bg-gold transition-transform origin-left duration-300",
+                      pathname.startsWith("/blog") ? "scale-x-100" : "scale-x-0"
+                    )}
+                  />
+                </Link>
+              </li>
             </ul>
 
             {/* CTA */}
@@ -445,6 +464,17 @@ export default function Navbar() {
                 )}
               >
                 About Us
+              </Link>
+
+              <Link
+                href="/blog"
+                onClick={closeMobile}
+                className={cn(
+                  "flex items-center px-6 py-4 text-[1.05rem] font-medium transition-colors border-b border-gray-50",
+                  pathname.startsWith("/blog") ? "text-gold" : "text-navy hover:text-gold"
+                )}
+              >
+                Blog
               </Link>
 
               <Link

@@ -1,9 +1,6 @@
 import type { Metadata } from "next"
-import { Playfair_Display, DM_Sans, DM_Mono } from "next/font/google"
-import Script from "next/script"
+import { Playfair_Display, DM_Sans, DM_Mono, Outfit } from "next/font/google"
 import { Toaster } from "sonner"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
 import "./globals.css"
 
 const playfair = Playfair_Display({
@@ -28,6 +25,14 @@ const dmMono = DM_Mono({
   display: "swap",
 })
 
+// Admin dashboard font. Not preloaded so public pages never download it.
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+  preload: false,
+})
+
 export const metadata: Metadata = {
   title: "VizionForge — Low Code · AI-First · Enterprise Delivery",
   description:
@@ -43,18 +48,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${dmMono.variable}`}>
+    <html
+      lang="en"
+      className={`${playfair.variable} ${dmSans.variable} ${dmMono.variable} ${outfit.variable}`}
+    >
       <body className="min-h-screen antialiased">
-        <Navbar />
-        <main className="pt-[68px]">{children}</main>
-        <Footer />
+        {children}
         <Toaster position="top-center" richColors closeButton />
-        <Script id="apollo-tracker" strategy="afterInteractive">
-          {`function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
-o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
-o.onload=function(){window.trackingFunctions.onLoad({appId:"689464a1f608980021537cb8"})},
-document.head.appendChild(o)}initApollo();`}
-        </Script>
       </body>
     </html>
   )
