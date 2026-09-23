@@ -214,7 +214,14 @@ export function BlogsTable({
                         {blog.featured && <Star className="size-3.5 shrink-0 fill-amber-400 text-amber-400" />}
                         <span className="truncate">{blog.title}</span>
                       </p>
-                      <p className="max-w-[380px] truncate text-xs text-gray-500">/blog/{blog.slug}</p>
+                      <p className="flex max-w-[380px] items-center gap-1.5 truncate text-xs text-gray-500">
+                        {blog.source === "api" && (
+                          <span className="rounded bg-sky-50 px-1 py-px text-[10px] font-semibold uppercase tracking-wide text-sky-700 ring-1 ring-sky-200">
+                            API
+                          </span>
+                        )}
+                        <span className="truncate">/blog/{blog.slug}</span>
+                      </p>
                     </div>
                   </Link>
                 </TableCell>

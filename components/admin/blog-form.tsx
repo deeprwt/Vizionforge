@@ -36,6 +36,8 @@ function toInput(blog?: Blog, defaultAuthor = ""): BlogInput {
     featured: blog?.featured ?? false,
     seo_title: blog?.seo_title ?? "",
     seo_description: blog?.seo_description ?? "",
+    canonical_url: blog?.canonical_url ?? "",
+    og_image_url: blog?.og_image_url ?? null,
   }
 }
 
@@ -275,7 +277,13 @@ export function BlogForm({
             </CardContent>
           </Card>
 
-          <CoverImageCard value={form.cover_image_url} onChange={(url) => update("cover_image_url", url)} />
+          <ImageUploadCard
+            title="Cover image"
+            description="Shown on the blog listing and at the top of the post. 16:9 works best."
+            folder="covers"
+            value={form.cover_image_url}
+            onChange={(url) => update("cover_image_url", url)}
+          />
 
           <Card className="rounded-2xl border-gray-200/70 shadow-sm">
             <CardHeader>
@@ -375,6 +383,16 @@ export function BlogForm({
                   className="min-h-20"
                 />
               </div>
+              <div className="space-y-2">
+                <Label htmlFor="canonical-url">Canonical URL</Label>
+                <Input
+                  id="canonical-url"
+                  type="url"
+                  value={form.canonical_url}
+                  onChange={(e) => update("canonical_url", e.target.value)}
+                  placeholder="https://… (only if first published elsewhere)"
+                />
+              </div>
               <div className="rounded-xl border border-gray-200 bg-gray-50/60 p-3">
                 <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400">Search preview</p>
                 <p className="mt-1.5 truncate text-xs text-gray-500">vizionforge.com › blog › {form.slug || "…"}</p>
@@ -383,6 +401,14 @@ export function BlogForm({
               </div>
             </CardContent>
           </Card>
+
+          <ImageUploadCard
+            title="Social share image"
+            description="Used for link previews on LinkedIn, X and WhatsApp. Defaults to the cover image. 1200×630 works best."
+            folder="social"
+            value={form.og_image_url}
+            onChange={(url) => update("og_image_url", url)}
+          />
         </div>
       </div>
     </>
@@ -398,7 +424,19 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   )
 }
 
-function CoverImageCard({ value, onChange }: { value: string | null; onChange: (url: string | null) => void }) {
+function ImageUploadCard({
+  title,
+  description,
+  folder,
+  value,
+  onChange,
+}: {
+  title: string
+  description: string
+  folder: "covers" | "social"
+  value: string | null
+  onChange: (url: string | null) => void
+}) {
   const inputRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
   const [dragOver, setDragOver] = useState(false)
@@ -407,7 +445,7 @@ function CoverImageCard({ value, onChange }: { value: string | null; onChange: (
     if (!file) return
     setUploading(true)
     try {
-      onChange(await uploadBlogImage(file, "covers"))
+      onChange(await uploadBlogImage(file, folder))
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Upload failed")
     } finally {
@@ -418,8 +456,8 @@ function CoverImageCard({ value, onChange }: { value: string | null; onChange: (
   return (
     <Card className="rounded-2xl border-gray-200/70 shadow-sm">
       <CardHeader>
-        <CardTitle className="text-base">Cover image</CardTitle>
-        <CardDescription>Shown on the blog listing and at the top of the post. 16:9 works best.</CardDescription>
+        <CardTitle className="text-base">{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
         <input
@@ -435,7 +473,7 @@ function CoverImageCard({ value, onChange }: { value: string | null; onChange: (
         {value ? (
           <div className="space-y-3">
             <div className="relative aspect-video overflow-hidden rounded-xl border border-gray-200 bg-gray-100">
-              <Image src={value} alt="Cover" fill sizes="400px" className="object-cover" />
+              <Image src={value} alt={title} fill sizes="400px" className="object-cover" />
               {uploading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-white/70">
                   <Loader2 className="size-6 animate-spin text-indigo-600" />

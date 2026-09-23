@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import {
   ExternalLink,
   FileText,
+  KeyRound,
   LayoutDashboard,
   LogOut,
   MoreVertical,
@@ -33,6 +34,7 @@ type NavItem = { name: string; icon: LucideIcon; path: string }
 const NAV_ITEMS: NavItem[] = [
   { name: "Dashboard", icon: LayoutDashboard, path: "/admin" },
   { name: "Blogs", icon: FileText, path: "/admin/blogs" },
+  { name: "API Access", icon: KeyRound, path: "/admin/api-keys" },
 ]
 
 export function AppSidebar({ admin }: { admin: AdminProfile }) {

@@ -10,7 +10,7 @@ export const ACCEPTED_IMAGE_TYPES = ["image/png", "image/jpeg", "image/webp", "i
  * Uploads an image straight from the browser to Supabase Storage (the
  * admin's session + storage RLS authorize it) and returns its public URL.
  */
-export async function uploadBlogImage(file: File, folder: "covers" | "content") {
+export async function uploadBlogImage(file: File, folder: "covers" | "content" | "social") {
   if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
     throw new Error("Use a PNG, JPG, WEBP, GIF or AVIF image.")
   }

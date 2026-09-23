@@ -1,4 +1,4 @@
-import { BLOG_IMAGES_BUCKET } from "@/lib/supabase/env"
+import { BLOG_IMAGES_BUCKET, SUPABASE_URL } from "@/lib/supabase/env"
 
 export function slugify(input: string) {
   return input
@@ -34,21 +34,25 @@ export function formatDate(value: string | null | undefined, style: "long" | "sh
   })
 }
 
-const PUBLIC_PATH_MARKER = `/storage/v1/object/public/${BLOG_IMAGES_BUCKET}/`
+const PUBLIC_URL_PREFIX = `${SUPABASE_URL.replace(/\/+$/, "")}/storage/v1/object/public/${BLOG_IMAGES_BUCKET}/`
 
-/** Storage object path for a public blog-images URL, or null for other URLs. */
+/**
+ * Storage object path for an image in this project's blog-images bucket,
+ * or null for any other URL (including other Supabase projects).
+ */
 export function storagePathFromUrl(url: string | null | undefined) {
-  if (!url) return null
-  const index = url.indexOf(PUBLIC_PATH_MARKER)
-  if (index === -1) return null
-  return decodeURIComponent(url.slice(index + PUBLIC_PATH_MARKER.length).split("?")[0])
+  if (!url || !SUPABASE_URL || !url.startsWith(PUBLIC_URL_PREFIX)) return null
+  const path = decodeURIComponent(url.slice(PUBLIC_URL_PREFIX.length).split("?")[0])
+  return path && !path.includes("..") ? path : null
 }
 
-/** Storage paths of every bucket image used by a post (cover + inline). */
-export function collectImagePaths(coverUrl: string | null | undefined, html: string) {
+/** Storage paths of every bucket image used by a post (cover/social images + inline). */
+export function collectImagePaths(imageUrls: (string | null | undefined)[], html: string) {
   const paths = new Set<string>()
-  const cover = storagePathFromUrl(coverUrl)
-  if (cover) paths.add(cover)
+  for (const url of imageUrls) {
+    const path = storagePathFromUrl(url)
+    if (path) paths.add(path)
+  }
   for (const match of html.matchAll(/<img[^>]+src="([^"]+)"/g)) {
     const path = storagePathFromUrl(match[1])
     if (path) paths.add(path)

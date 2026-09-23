@@ -24,23 +24,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = blog.seo_title || blog.title
   const description = blog.seo_description || blog.excerpt || undefined
+  const image = blog.og_image_url || blog.cover_image_url
   return {
     title: `${title} — VizionForge`,
     description,
+    keywords: blog.tags.length ? blog.tags : undefined,
+    authors: blog.author_name ? [{ name: blog.author_name }] : undefined,
+    category: blog.category ?? undefined,
+    alternates: { canonical: blog.canonical_url || `/blog/${blog.slug}` },
     openGraph: {
       type: "article",
       title,
       description,
+      url: `/blog/${blog.slug}`,
+      siteName: "VizionForge",
       publishedTime: blog.published_at ?? undefined,
       modifiedTime: blog.updated_at,
       authors: blog.author_name ? [blog.author_name] : undefined,
+      section: blog.category ?? undefined,
       tags: blog.tags,
-      images: blog.cover_image_url ? [blog.cover_image_url] : undefined,
+      images: image ? [{ url: image, alt: title }] : undefined,
     },
     twitter: {
-      card: blog.cover_image_url ? "summary_large_image" : "summary",
+      card: image ? "summary_large_image" : "summary",
       title,
       description,
+      images: image ? [image] : undefined,
     },
   }
 }
@@ -110,7 +119,7 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           )}
 
-          {/* Content is authored by signed-in admins only (enforced by RLS). */}
+          {/* Sanitized on every save, from the dashboard or the API (lib/blog/sanitize.ts). */}
           <div
             className="blog-content text-navy/85 [&_h2]:font-display [&_h2]:text-navy [&_h3]:text-navy [&_h4]:text-navy"
             dangerouslySetInnerHTML={{ __html: blog.content }}

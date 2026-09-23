@@ -154,3 +154,46 @@ create policy "Admins can delete blog images"
 -- insert into public.admin_users (user_id)
 -- select id from auth.users where email = 'admin@vizionforge.com'
 -- on conflict do nothing;
+
+-- =====================================================================
+--  v2 — Public blog API (API keys, extra SEO fields). Safe to re-run.
+-- =====================================================================
+
+create table if not exists public.api_keys (
+  id            uuid primary key default gen_random_uuid(),
+  name          text not null,
+  key_prefix    text not null,                 -- first characters, for display only
+  key_hash      text not null unique,          -- sha256 of the full key; the key itself is never stored
+  created_by    uuid references auth.users (id) on delete set null default auth.uid(),
+  created_at    timestamptz not null default now(),
+  last_used_at  timestamptz,
+  expires_at    timestamptz,
+  revoked_at    timestamptz
+);
+
+alter table public.api_keys enable row level security;
+
+drop policy if exists "Admins manage API keys" on public.api_keys;
+create policy "Admins manage API keys"
+  on public.api_keys for all
+  to authenticated
+  using ((select public.is_admin()))
+  with check ((select public.is_admin()));
+
+alter table public.blogs add column if not exists canonical_url text;
+alter table public.blogs add column if not exists og_image_url  text;
+alter table public.blogs add column if not exists source        text not null default 'dashboard';
+alter table public.blogs add column if not exists api_key_id    uuid;
+
+do $$
+begin
+  if not exists (select 1 from pg_constraint where conname = 'blogs_source_check') then
+    alter table public.blogs
+      add constraint blogs_source_check check (source in ('dashboard', 'api'));
+  end if;
+  if not exists (select 1 from pg_constraint where conname = 'blogs_api_key_id_fkey') then
+    alter table public.blogs
+      add constraint blogs_api_key_id_fkey
+      foreign key (api_key_id) references public.api_keys (id) on delete set null;
+  end if;
+end $$;
