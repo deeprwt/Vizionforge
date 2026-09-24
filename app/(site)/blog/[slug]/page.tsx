@@ -17,6 +17,11 @@ export function generateStaticParams() {
 
 type Props = { params: Promise<{ slug: string }> }
 
+/** Wraps tables so wide ones scroll sideways on phones instead of breaking the layout. */
+function withScrollableTables(html: string) {
+  return html.replace(/<table\b/g, '<div class="table-scroll"><table').replace(/<\/table>/g, "</table></div>")
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const blog = await getPublishedBlogBySlug(slug)
@@ -122,7 +127,7 @@ export default async function BlogPostPage({ params }: Props) {
           {/* Sanitized on every save, from the dashboard or the API (lib/blog/sanitize.ts). */}
           <div
             className="blog-content text-navy/85 [&_h2]:font-display [&_h2]:text-navy [&_h3]:text-navy [&_h4]:text-navy"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
+            dangerouslySetInnerHTML={{ __html: withScrollableTables(blog.content) }}
           />
 
           {blog.tags.length > 0 && (

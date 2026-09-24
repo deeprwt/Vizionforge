@@ -5,6 +5,7 @@ import { EditorContent, useEditor, useEditorState, type Editor } from "@tiptap/r
 import StarterKit from "@tiptap/starter-kit"
 import Image from "@tiptap/extension-image"
 import { Placeholder } from "@tiptap/extensions"
+import { TableKit } from "@tiptap/extension-table"
 import { toast } from "sonner"
 import {
   Bold,
@@ -22,6 +23,7 @@ import {
   Quote,
   Redo2,
   SquareCode,
+  Table2,
   Strikethrough,
   Underline,
   Undo2,
@@ -43,6 +45,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/admin/ui/dialog"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/admin/ui/dropdown-menu"
 
 const imageFiles = (list: FileList | null | undefined) =>
   Array.from(list ?? []).filter((file) => file.type.startsWith("image/"))
@@ -89,6 +99,8 @@ export function RichTextEditor({
         link: { openOnClick: false, autolink: true, defaultProtocol: "https" },
       }),
       Image.configure({ allowBase64: false }),
+      // Column resizing is off: widths would be saved as inline styles, which the sanitizer strips.
+      TableKit.configure({ table: { resizable: false } }),
       Placeholder.configure({ placeholder }),
     ],
     content: value,
@@ -133,6 +145,7 @@ export function RichTextEditor({
       blockquote: editor?.isActive("blockquote") ?? false,
       codeBlock: editor?.isActive("codeBlock") ?? false,
       link: editor?.isActive("link") ?? false,
+      table: editor?.isActive("table") ?? false,
       canUndo: editor?.can().undo() ?? false,
       canRedo: editor?.can().redo() ?? false,
     }),
@@ -164,6 +177,7 @@ export function RichTextEditor({
         <ToolButton icon={Minus} label="Divider" onClick={() => chain().setHorizontalRule().run()} />
         <ToolbarDivider />
         <ToolToggle icon={Link2} label="Link" pressed={state?.link} onClick={() => setLinkOpen(true)} />
+        <TableMenu editor={editor} inTable={state?.table ?? false} />
         <ToolButton
           icon={uploading > 0 ? Loader2 : ImagePlus}
           label="Insert image"
@@ -196,6 +210,61 @@ export function RichTextEditor({
 
       <LinkDialog open={linkOpen} onOpenChange={setLinkOpen} editor={editor} />
     </div>
+  )
+}
+
+function TableMenu({ editor, inTable }: { editor: Editor | null; inTable: boolean }) {
+  const run = (command: (chain: ReturnType<Editor["chain"]>) => ReturnType<Editor["chain"]>) => {
+    if (editor) command(editor.chain().focus()).run()
+  }
+  const tableItems: [string, (c: ReturnType<Editor["chain"]>) => ReturnType<Editor["chain"]>][] = [
+    ["Add row above", (c) => c.addRowBefore()],
+    ["Add row below", (c) => c.addRowAfter()],
+    ["Add column left", (c) => c.addColumnBefore()],
+    ["Add column right", (c) => c.addColumnAfter()],
+    ["Delete row", (c) => c.deleteRow()],
+    ["Delete column", (c) => c.deleteColumn()],
+    ["Toggle header row", (c) => c.toggleHeaderRow()],
+    ["Merge or split cells", (c) => c.mergeOrSplit()],
+  ]
+
+  return (
+    <DropdownMenu>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <DropdownMenuTrigger asChild>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              aria-label="Table"
+              className={cn("text-gray-600", inTable && "bg-indigo-100 text-indigo-700 hover:bg-indigo-100")}
+            >
+              <Table2 />
+            </Button>
+          </DropdownMenuTrigger>
+        </TooltipTrigger>
+        <TooltipContent>Table</TooltipContent>
+      </Tooltip>
+      <DropdownMenuContent align="start" className="w-52" onCloseAutoFocus={(e) => e.preventDefault()}>
+        <DropdownMenuItem onSelect={() => run((c) => c.insertTable({ rows: 3, cols: 3, withHeaderRow: true }))}>
+          <Table2 /> Insert table (3×3)
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel className="text-xs font-normal text-gray-500">
+          {inTable ? "Current table" : "Place the cursor in a table"}
+        </DropdownMenuLabel>
+        {tableItems.map(([label, command]) => (
+          <DropdownMenuItem key={label} disabled={!inTable} onSelect={() => run(command)}>
+            {label}
+          </DropdownMenuItem>
+        ))}
+        <DropdownMenuSeparator />
+        <DropdownMenuItem variant="destructive" disabled={!inTable} onSelect={() => run((c) => c.deleteTable())}>
+          Delete table
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
 

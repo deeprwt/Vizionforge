@@ -56,3 +56,20 @@ body:has([data-admin-root]) ::after {
   outline: 3px solid #6366f1;
   outline-offset: 2px;
 }
+
+/* Tables in the editor: scroll wide tables, highlight selected cells. */
+[data-admin-root] .tiptap table {
+  display: block;
+  overflow-x: auto;
+}
+[data-admin-root] .tiptap td,
+[data-admin-root] .tiptap th {
+  position: relative;
+}
+[data-admin-root] .tiptap .selectedCell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(99, 102, 241, 0.12);
+  pointer-events: none;
+}
