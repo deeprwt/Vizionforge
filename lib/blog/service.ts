@@ -47,6 +47,7 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 export function revalidateBlogPages(...slugs: (string | null | undefined)[]) {
   revalidatePath("/blog")
+  revalidatePath("/sitemap.xml")
   for (const slug of new Set(slugs)) if (slug) revalidatePath(`/blog/${slug}`)
   revalidatePath("/admin", "layout")
 }

@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
-import { headers } from "next/headers"
 import { AlertTriangle } from "lucide-react"
 import { getAdminUser } from "@/lib/supabase/server"
 import { isServiceRoleConfigured } from "@/lib/supabase/admin"
+import { SITE_URL } from "@/lib/site"
 import { PageHeader } from "@/components/admin/page-header"
 import { ApiKeysManager, type ApiKeyRow } from "@/components/admin/api-keys-manager"
 import { ApiQuickStart } from "@/components/admin/api-quick-start"
@@ -16,10 +16,7 @@ export default async function ApiKeysPage() {
     .select("id, name, key_prefix, created_at, last_used_at, expires_at, revoked_at")
     .order("created_at", { ascending: false })
 
-  const requestHeaders = await headers()
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "vizionforge.com"
-  const proto = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https")
-  const origin = (process.env.SITE_URL || `${proto}://${host}`).replace(/\/+$/, "")
+  const origin = SITE_URL
 
   return (
     <>

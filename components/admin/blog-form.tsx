@@ -395,7 +395,7 @@ export function BlogForm({
               </div>
               <div className="rounded-xl border border-gray-200 bg-gray-50/60 p-3">
                 <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400">Search preview</p>
-                <p className="mt-1.5 truncate text-xs text-gray-500">vizionforge.com › blog › {form.slug || "…"}</p>
+                <p className="mt-1.5 truncate text-xs text-gray-500">www.vizionforge.com › blog › {form.slug || "…"}</p>
                 <p className="truncate text-[15px] font-medium text-[#1a0dab]">{seoTitle}</p>
                 <p className="line-clamp-2 text-xs text-gray-600">{seoDescription}</p>
               </div>

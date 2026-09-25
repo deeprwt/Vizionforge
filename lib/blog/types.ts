@@ -27,11 +27,11 @@ export interface Blog {
 
 /** Columns needed for listings — skips the (large) content column. */
 export const BLOG_LIST_COLUMNS =
-  "id, title, slug, excerpt, cover_image_url, category, tags, author_name, status, featured, source, reading_time, published_at, created_at, updated_at"
+  "id, title, slug, excerpt, cover_image_url, category, tags, author_name, status, featured, source, canonical_url, reading_time, published_at, created_at, updated_at"
 
 export type BlogListItem = Omit<
   Blog,
-  "content" | "seo_title" | "seo_description" | "canonical_url" | "og_image_url" | "api_key_id"
+  "content" | "seo_title" | "seo_description" | "og_image_url" | "api_key_id"
 >
 
 /** What the admin editor submits. */

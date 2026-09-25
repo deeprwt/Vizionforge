@@ -5,6 +5,7 @@ import type { SupabaseClient } from "@supabase/supabase-js"
 import { createServiceClient, isServiceRoleConfigured } from "@/lib/supabase/admin"
 import { BlogServiceError, type BlogErrorCode } from "@/lib/blog/service"
 import type { Blog } from "@/lib/blog/types"
+import { SITE_URL } from "@/lib/site"
 import { verifyApiKey, type ApiKeyRecord } from "./keys"
 
 export type ApiErrorCode =
@@ -161,8 +162,8 @@ export const updateBlogSchema = z
 // ---------------------------------------------------------------------------
 //  Output
 // ---------------------------------------------------------------------------
-export function siteOrigin(request: NextRequest) {
-  return (process.env.SITE_URL || request.nextUrl.origin).replace(/\/+$/, "")
+export function siteOrigin(_request: NextRequest) {
+  return SITE_URL
 }
 
 export function serializeBlog(blog: Blog, origin: string, { includeContent = true } = {}) {

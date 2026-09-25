@@ -1,8 +1,8 @@
 # VizionForge Blog API
 
-Publish articles to the VizionForge blog (`https://vizionforge.com/blog`) from your own tools. You can create, update and delete posts, attach images, and set SEO metadata.
+Publish articles to the VizionForge blog (`https://www.vizionforge.com/blog`) from your own tools. You can create, update and delete posts, attach images, and set SEO metadata.
 
-- **Base URL:** `https://vizionforge.com/api/v1`
+- **Base URL:** `https://www.vizionforge.com/api/v1`
 - **Format:** JSON in, JSON out (image uploads may also use `multipart/form-data`)
 - **Rate limit:** 120 requests per minute per API key
 
@@ -21,7 +21,7 @@ Authorization: Bearer vf_live_xxxxxxxxxxxxxxxxxxxxxxxx
 Create and publish a post:
 
 ```bash
-curl -X POST https://vizionforge.com/api/v1/blogs \
+curl -X POST https://www.vizionforge.com/api/v1/blogs \
   -H "Authorization: Bearer $VIZIONFORGE_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -46,7 +46,7 @@ Response `201 Created`:
   "data": {
     "id": "5b0e3c1e-2f7a-4a36-9a4e-1c2d3e4f5a6b",
     "slug": "how-agentic-ai-is-reshaping-it-operations",
-    "url": "https://vizionforge.com/blog/how-agentic-ai-is-reshaping-it-operations",
+    "url": "https://www.vizionforge.com/blog/how-agentic-ai-is-reshaping-it-operations",
     "status": "published",
     "cover_image": "https://<project>.supabase.co/storage/v1/object/public/blog-images/covers/2026/09/….jpg",
     "...": "all other post fields"
@@ -84,7 +84,7 @@ List results leave out `content`. The response includes `pagination: { limit, of
 ### Update a post
 
 ```bash
-curl -X PATCH https://vizionforge.com/api/v1/blogs/how-agentic-ai-is-reshaping-it-operations \
+curl -X PATCH https://www.vizionforge.com/api/v1/blogs/how-agentic-ai-is-reshaping-it-operations \
   -H "Authorization: Bearer $VIZIONFORGE_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "seo_description": "Updated description", "tags": ["ai", "aiops"] }'
@@ -95,7 +95,7 @@ Fields you leave out stay unchanged. Send `null` to clear an optional field. To 
 ### Delete a post
 
 ```bash
-curl -X DELETE https://vizionforge.com/api/v1/blogs/5b0e3c1e-2f7a-4a36-9a4e-1c2d3e4f5a6b \
+curl -X DELETE https://www.vizionforge.com/api/v1/blogs/5b0e3c1e-2f7a-4a36-9a4e-1c2d3e4f5a6b \
   -H "Authorization: Bearer $VIZIONFORGE_API_KEY"
 ```
 
@@ -140,12 +140,12 @@ Limits: PNG, JPG, WEBP, GIF or AVIF, up to **5 MB** each. The file type is check
 
 ```bash
 # From a file
-curl -X POST https://vizionforge.com/api/v1/images \
+curl -X POST https://www.vizionforge.com/api/v1/images \
   -H "Authorization: Bearer $VIZIONFORGE_API_KEY" \
   -F "file=@./photo.jpg"
 
 # From a URL or base64
-curl -X POST https://vizionforge.com/api/v1/images \
+curl -X POST https://www.vizionforge.com/api/v1/images \
   -H "Authorization: Bearer $VIZIONFORGE_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "url": "https://example.com/photo.jpg" }'
@@ -192,7 +192,7 @@ Errors use a standard HTTP status and this body:
 ## JavaScript example
 
 ```js
-const response = await fetch("https://vizionforge.com/api/v1/blogs", {
+const response = await fetch("https://www.vizionforge.com/api/v1/blogs", {
   method: "POST",
   headers: {
     Authorization: `Bearer ${process.env.VIZIONFORGE_API_KEY}`,
@@ -216,7 +216,7 @@ console.log("Created", data.url)
 import os, requests
 
 response = requests.post(
-    "https://vizionforge.com/api/v1/blogs",
+    "https://www.vizionforge.com/api/v1/blogs",
     headers={"Authorization": f"Bearer {os.environ['VIZIONFORGE_API_KEY']}"},
     json={
         "title": "Hello from Python",

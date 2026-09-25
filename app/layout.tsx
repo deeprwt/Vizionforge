@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Playfair_Display, DM_Sans, DM_Mono, Outfit } from "next/font/google"
 import { Toaster } from "sonner"
+import { SITE_URL } from "@/lib/site"
 import "./globals.css"
 
 const playfair = Playfair_Display({
@@ -35,7 +36,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   // Resolves relative canonical and Open Graph URLs (e.g. on blog posts).
-  metadataBase: new URL(process.env.SITE_URL || "https://vizionforge.com"),
+  metadataBase: new URL(SITE_URL),
   title: "VizionForge — Low Code · AI-First · Enterprise Delivery",
   description:
     "A specialized Low-Code and AI-first engineering firm — built to be your trusted enterprise delivery partner across OutSystems, Microsoft and ServiceNow.",
